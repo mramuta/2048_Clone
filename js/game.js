@@ -140,6 +140,7 @@ Game.prototype.removeZeros = function(arr){
 
 
 Game.prototype.move = function(dir) {
+  var oldBoard = this.board.slice(0);
   switch(dir){
     case 'up':
       this.board = this.squish(this.up())
@@ -159,7 +160,7 @@ Game.prototype.move = function(dir) {
   }
   if(this.emptyCoords().length == 0){
     return 0;
-  } else{
+  } else if(_.flatten(this.board).join('') != _.flatten(oldBoard).join('')){
     this.addRandom();
     return 1;
   }
