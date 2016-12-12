@@ -1,5 +1,5 @@
 $(document).ready(function() {
-var g = new Game('2200202000002000')
+var g = new Game()
 
 var canvas = document.getElementById("canvasView");
 canvas.width = 800;

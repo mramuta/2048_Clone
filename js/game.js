@@ -10,8 +10,16 @@ function strToBoard(str){
 
 
 function Game(boardStr){
-  this.boardStr = boardStr || '0000000000000000';
-  this.board = strToBoard(this.boardStr);
+  if (!boardStr){
+    this.board = [ [ '0', '0', '0', '0' ], [ '0', '0', '0', '0' ], [ '0', '0', '0', '0' ], [ '0', '0', '0', '0' ] ];
+    this.addRandom();
+    this.addRandom();
+  }else{
+    this.board = strToBoard(boardStr);
+  }
+  // this.boardStr = boardStr || '0000000000000000';
+  // this.board = strToBoard(this.boardStr);
+
   this.over = false;
   this.score = 0;
 }

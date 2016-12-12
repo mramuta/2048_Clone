@@ -25,5 +25,21 @@ describe("game", function() {
     expect(game.prependZeros(game.removeZeros(game.board))).toEqual([ [ '0', '0', '2', '2' ], [ '0', '0', '2', '2' ], [ '0', '0', '0', '0' ], [ '0', '0', '0', '2' ] ]);
   });
 
+  it("knows when a game is over", function() {
+    game.board = [ [ '2', '4', '2', '4' ], [ '4', '2', '4', '2' ], [ '2', '4', '2', '4' ], [ '4', '2', '4', '2' ] ];
+    expect(game.gameOver()).toEqual(true);
+  });
+
+
+  it("knows how many empty tiles there are", function() {
+    game.board = [ [ '0', '0', '0', '0' ], [ '0', '0', '0', '0' ], [ '0', '0', '0', '0' ], [ '0', '0', '0', '0' ] ];
+    expect(game.emptyCoords().length).toEqual(16);
+  });
+
+  it("knows how many remaining moves there are", function() {
+    game.board = [ [ '2', '4', '2', '4' ], [ '4', '2', '4', '2' ], [ '2', '4', '8', '2' ], [ '4', '2', '4', '2' ] ];
+    expect(game.moveChecker()).toEqual(2);
+  });
+
 });
 
