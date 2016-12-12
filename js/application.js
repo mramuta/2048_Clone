@@ -1,6 +1,21 @@
 $(document).ready(function() {
-var g = new Game()
 
+  $('#newgame').on("click",function(e){
+    e.preventDefault();
+    g = new Game()
+    localStorage.setItem("gameboard", null);
+  })
+
+var g = new Game()
+if (localStorage.getItem("gameboard")){
+  console.log('ayy')
+  g.boardSingleArr(localStorage.getItem("gameboard").split(' '));
+}
+if (!localStorage.getItem("gameboard") || g.gameOver()){
+  console.log('bbb')
+  g = new Game()
+}
+console.log(localStorage.getItem("gameboard"))
 var canvas = document.getElementById("canvasView");
 canvas.width = 800;
 canvas.height = 800;
@@ -8,23 +23,18 @@ var ctx = canvas.getContext("2d");
 
 Mousetrap.bind('up', function(e) {
   g.move('up');
-  // then spawn a random number:
 });
 
 Mousetrap.bind('down', function(e) {
   g.move('down');
-  // then spawn a random number:
-
 });
 
 Mousetrap.bind('left', function(e) {
   g.move('left');
-  // then spawn a random number:
 });
 
 Mousetrap.bind('right', function(e) {
   g.move('right');
-  // then spawn a random number:
 });
 
 function drawBoard() {

@@ -24,10 +24,21 @@ function Game(boardStr){
   this.score = 0;
 }
 
-Game.prototype.toString = function() {
+Game.prototype.boardSingleArr = function(arr){
+  var board = [[],[],[],[]];
+  for (var i = 0; i < 4; i++){
+    for (var j = 0; j < 4; j++){
+      board[i].push(arr[j+i*4]);
+    }
+  }
+  this.board = board;
+}
+
+Game.prototype.boardToString = function() {
   var str = ''
   for(var i in this.board){
-    str += _.flatten(this.board[i]).join("") + '\n';
+    str += _.flatten(this.board[i]).join(" ");
+    str += ' '
   }
   return str;
 }
@@ -162,6 +173,7 @@ Game.prototype.move = function(dir) {
     return 0;
   } else if(_.flatten(this.board).join('') != _.flatten(oldBoard).join('')){
     this.addRandom();
+    localStorage.setItem("gameboard", this.boardToString());
     return 1;
   }
 
